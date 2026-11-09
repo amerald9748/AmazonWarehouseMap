@@ -12,6 +12,7 @@ The data comes straight from two Excel workbooks, [`data/warehouses.xlsx`](data/
 - **Popups**: code, city and every Excel field (labelled with the original header text), plus a 查看详情 button
 - **Import**: drag an `.xlsx` onto the page (or use 导入 Excel) to preview a new file locally. Nothing is uploaded.
 - **Deep links**: `…/#YYZ4` opens a warehouse directly
+- **Performance**: on old or integrated GPUs a **流畅模式 (lite mode)** turns on automatically. It caps the pixel ratio at 1, simplifies the 3D buildings, and turns off blur effects and marker pulses. It triggers on known weak GPUs, or when camera moves run below ~32 fps, and is remembered per browser. Force it with `?perf=lite` or `?perf=high` (the latter also clears the remembered choice), or set `PERFORMANCE_MODE` in `js/config.js`. Add `?fps=1` for a live frame-rate readout.
 
 No build step, no backend: plain HTML + ES modules + CDN libraries.
 

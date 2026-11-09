@@ -51,4 +51,10 @@ export const CONFIG = {
 
   /** 3D 建筑挤出 */
   BUILDINGS_3D: true,
+
+  /**
+   * 渲染性能：'auto'（老旧显卡或实测帧率偏低时自动启用流畅模式）| 'high' | 'lite'
+   * 也可用 URL 临时指定：?perf=lite / ?perf=high；加 ?fps=1 显示实时帧率。
+   */
+  PERFORMANCE_MODE: 'auto',
 };

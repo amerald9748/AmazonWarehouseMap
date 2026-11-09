@@ -3,6 +3,7 @@
  * 并在每次样式加载后：中文地名、深色调统一、3D 建筑挤出、地球大气。
  */
 import { CONFIG } from '../config.js';
+import { buildingSpec, isLite } from '../perf.js';
 
 /** @param {'dark'|'light'} theme */
 export function resolveStyle(theme = 'dark') {
@@ -114,6 +115,7 @@ function add3DBuildings(map, layers, theme = 'dark') {
     || Object.entries(map.getStyle().sources).find(([, s]) => s.type === 'vector')?.[0];
   if (!source) return;
   const firstSymbol = layers.find((l) => l.type === 'symbol')?.id;
+  const spec = buildingSpec();
   const height = ['coalesce', ['get', 'render_height'], ['get', 'height'], 8];
   const base = ['coalesce', ['get', 'render_min_height'], ['get', 'min_height'], 0];
   try {
@@ -122,19 +124,20 @@ function add3DBuildings(map, layers, theme = 'dark') {
       type: 'fill-extrusion',
       source,
       'source-layer': 'building',
-      minzoom: 13,
+      // 3D 体块只在近距离出现（性能开销最大的图层）；更远时由底图自带的 2D 建筑轮廓接替
+      minzoom: spec.minzoom,
       paint: {
         'fill-extrusion-color': theme === 'light'
           ? ['interpolate', ['linear'], height, 0, '#e2e8f0', 25, '#cbd5e1', 80, '#b4c0d3']
           : ['interpolate', ['linear'], height, 0, '#1b2638', 25, '#26354d', 80, '#33476a'],
-        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 13, 0, 14.2, height],
-        'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 13, 0, 14.2, base],
-        'fill-extrusion-opacity': 0.88,
-        'fill-extrusion-vertical-gradient': true,
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], spec.minzoom, 0, spec.rampEnd, height],
+        'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], spec.minzoom, 0, spec.rampEnd, base],
+        'fill-extrusion-opacity': spec.opacity,
+        'fill-extrusion-vertical-gradient': spec.gradient,
       },
     }, firstSymbol);
     for (const l of buildingLayers) {
-      if (l.type === 'fill') map.setLayoutProperty(l.id, 'visibility', 'none');
+      if (l.type === 'fill') map.setLayerZoomRange(l.id, l.minzoom ?? 0, spec.minzoom);
     }
   } catch (err) {
     console.warn('[底图] 3D 建筑不可用：', err?.message);
@@ -158,7 +161,8 @@ function setupGlobe(map, theme = 'dark') {
       'sky-horizon-blend': 0.6,
       'horizon-fog-blend': 0.7,
       'fog-ground-blend': 0.9,
-      'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 7, 0],
+      // 流畅模式下关闭大气光晕
+      'atmosphere-blend': isLite() ? 0 : ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 7, 0],
     });
   } catch { /* 可选效果 */ }
 }

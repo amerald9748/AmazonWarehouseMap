@@ -12,6 +12,7 @@ import { renderDetail, renderTab, resolveTab, TABS_BY_KIND } from './ui/detail.j
 import { renderLegend } from './ui/legend.js';
 import { toast } from './ui/toast.js';
 import { COLORS } from './ui/badges.js';
+import { getPerf, maybeShowFps } from './perf.js';
 
 const KINDS = ['amazon', 'internal'];
 const FILTERS = {
@@ -64,6 +65,8 @@ boot();
 
 async function boot() {
   renderStatus(els.status, { text: '正在加载仓库数据…', tone: 'loading' });
+  getPerf(); // 决定标准 / 流畅模式（必须在创建地图之前）
+  maybeShowFps();
   bindUI();
 
   mapView = new MapView($('#map'), {
@@ -73,6 +76,7 @@ async function boot() {
     onHover: (code, on, kind) => $$(`.wh-item[data-kind="${kind}"][data-code="${CSS.escape(code)}"]`, els.list).forEach((n) => n.classList.toggle('is-hover', on)),
     onFitAll: () => fitAll(),
     onStyleFallback: (reason) => toast(`${reason}，已切换到免 Key 底图`, { tone: 'warn', timeout: 5000 }),
+    onPerfDowngrade: (fps) => toast(`检测到地图帧率较低（约 ${fps} fps），已自动切换到流畅模式`, { tone: 'info', timeout: 5000 }),
   });
   mapView.setInternalVisible(state.internalVisible);
   $('#theme-toggle').setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'light'));

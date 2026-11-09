@@ -4,6 +4,7 @@
 import * as maplibregl from 'maplibre-gl';
 import { CONFIG } from '../config.js';
 import { resolveStyle, fallbackStyle, enhanceBasemap } from './basemap.js';
+import { mapPixelRatio, watchFrameRate } from '../perf.js';
 import { toGeoJSON, assignDisplayPositions } from '../data/parser.js';
 import { esc, icon } from '../ui/dom.js';
 import { COLORS, heatColor, recordBadges, internalBadges, recordColor } from '../ui/badges.js';
@@ -49,8 +50,11 @@ export class MapView {
       attributionControl: { compact: true },
       localIdeographFontFamily: '"PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Hiragino Sans GB", sans-serif',
       fadeDuration: 180,
+      // 高分屏的像素数是普通屏的 4–9 倍；标准模式上限 2，流畅模式上限 1
+      pixelRatio: mapPixelRatio(),
     }));
     window.__whMap = map; // 方便在控制台调试
+    watchFrameRate(map, (fps) => this.hooks.onPerfDowngrade?.(fps));
 
     // 底图引用了 sprite 中不存在的图标（如 circle-11 城市圆点）时，现场画一个，避免控制台告警
     if (typeof map.setMissingStyleImageResolver === 'function') {
@@ -66,8 +70,16 @@ export class MapView {
     map.on('error', (e) => this.handleError(e));
     map.on('style.load', () => this.handleStyleLoad());
     const schedule = () => this.scheduleSync();
-    map.on('move', schedule);
+    // 聚合只在整数缩放级别变化时改变：移动中不必每帧重算标记（2D↔3D 倾斜时完全不触发）
+    let lastZoom = -1;
+    map.on('move', () => {
+      const z = Math.floor(map.getZoom());
+      if (z !== lastZoom) { lastZoom = z; schedule(); }
+    });
     map.on('moveend', schedule);
+    // 相机移动期间暂停标记的脉冲 / 旋转动画，把 GPU 留给地图本身
+    map.on('movestart', () => this.container.classList.add('is-moving'));
+    map.on('moveend', () => this.container.classList.remove('is-moving'));
     map.on('sourcedata', (e) => { if (e.sourceId === SRC && map.isSourceLoaded(SRC)) schedule(); });
     map.on('pitchend', () => this.toolbar.update3D(map.getPitch() > 5));
 
