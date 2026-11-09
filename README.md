@@ -1,6 +1,8 @@
 # 亚马逊加拿大仓点地图 · Amazon Canada Warehouse Map
 
-Interactive, fully static logistics dashboard for Amazon Canada FBA warehouses and our own (自营) warehouses.
+Interactive, fully static logistics dashboard for Amazon Canada FBA warehouses and our own (自营) warehouses. 
+Access at: https://amerald9748.github.io/AmazonWarehouseMap/
+
 The data comes straight from two Excel workbooks, [`data/warehouses.xlsx`](data/warehouses.xlsx) (Amazon) and [`data/internal-warehouses.xlsx`](data/internal-warehouses.xlsx) (internal), parsed in the browser with SheetJS.
 
 - **Map**: MapLibre GL JS 6 (globe intro → fly-in), pulse-animated HTML markers, clustering with hot-ratio rings, 3D building extrusions, bilingual (中文 + English) place labels. Internal warehouses are emerald diamonds and never clustered. They're hidden at first and appear once someone opens the 自营仓 tab, opens an internal warehouse (e.g. from a nearby list or a `#TOR-1140` link), or turns on the legend switch.
