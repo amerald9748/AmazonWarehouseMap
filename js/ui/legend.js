@@ -28,14 +28,14 @@ export function renderLegend(el, defs = {}, { internalVisible = true, hasInterna
     <ul class="wh-legend-body mt-3 space-y-2 text-xs text-slate-300">
       ${item(dot(COLORS.hot), '热门仓', defs['热门仓'])}
       ${item(dot(COLORS.regular), '常规仓', defs['常规仓'])}
-      ${item('<span class="wh-legend-dot is-square" style="--c:#cbd5e1"></span>', '大件仓（方形标记）', defs['大件仓'])}
-      ${item('<span class="wh-legend-dot is-remote" style="--c:#cbd5e1"></span>', '偏远仓（虚线环）', defs['偏远仓'])}
-      ${item('<span class="wh-legend-cluster"></span>', '聚合：外环金色占比 = 热门仓比例', '')}
+      ${item('<span class="wh-legend-dot is-square" style="--c:#cbd5e1"></span>', '大件仓', defs['大件仓'])}
+      ${item('<span class="wh-legend-dot is-remote" style="--c:#cbd5e1"></span>', '偏远仓', defs['偏远仓'])}
+      ${item('<span class="wh-legend-cluster"></span>', '热门仓比例', '')}
       ${hasInternal ? `
       <li class="!mt-3 border-t border-white/[0.07] pt-3">
         <button type="button" role="switch" aria-checked="${internalVisible}" data-act="toggle-internal" class="wh-switch flex w-full items-center gap-2.5 text-left">
           <span class="wh-legend-dot is-diamond" style="--c:${COLORS.internal}"></span>
-          <span class="flex-1">自营仓（菱形标记）</span>
+          <span class="flex-1">自营仓</span>
           <span class="wh-switch__track"><span class="wh-switch__thumb"></span></span>
         </button>
       </li>` : ''}
