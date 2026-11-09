@@ -32,7 +32,8 @@ const state = {
   activeIndex: -1,
   selected: null,
   detailTab: 'overview',
-  internalVisible: true,
+  // 自营仓图层默认隐藏：切到「自营仓」标签、打开某个自营仓或在图例中打开开关后才显示
+  internalVisible: false,
 };
 const activeSet = () => state.sets[state.tab];
 
@@ -73,6 +74,8 @@ async function boot() {
     onFitAll: () => fitAll(),
     onStyleFallback: (reason) => toast(`${reason}，已切换到免 Key 底图`, { tone: 'warn', timeout: 5000 }),
   });
+  mapView.setInternalVisible(state.internalVisible);
+  $('#theme-toggle').setAttribute('aria-pressed', String(document.documentElement.dataset.theme === 'light'));
 
   let mapReady = Promise.resolve();
   try {

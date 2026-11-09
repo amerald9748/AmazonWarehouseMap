@@ -3,8 +3,8 @@
 Interactive, fully static logistics dashboard for Amazon Canada FBA warehouses and our own (自营) warehouses.
 The data comes straight from two Excel workbooks, [`data/warehouses.xlsx`](data/warehouses.xlsx) (Amazon) and [`data/internal-warehouses.xlsx`](data/internal-warehouses.xlsx) (internal), parsed in the browser with SheetJS.
 
-- **Map**: MapLibre GL JS 6 (globe intro → fly-in), pulse-animated HTML markers, clustering with hot-ratio rings, 3D building extrusions, bilingual (中文 + English) place labels. Internal warehouses are emerald diamonds, never clustered, and can be hidden from the legend.
-- **Dark / light mode**: sun/moon button in the panel header. The basemap switches too, and the choice is remembered per browser. Dark is the default.
+- **Map**: MapLibre GL JS 6 (globe intro → fly-in), pulse-animated HTML markers, clustering with hot-ratio rings, 3D building extrusions, bilingual (中文 + English) place labels. Internal warehouses are emerald diamonds and never clustered. They're hidden at first and appear once someone opens the 自营仓 tab, opens an internal warehouse (e.g. from a nearby list or a `#TOR-1140` link), or turns on the legend switch.
+- **Light / dark mode**: sun/moon button in the panel header. The basemap switches too, and the choice is remembered per browser. **Light is the default**; change `DEFAULT_THEME` in the inline script in `index.html` head.
 - **Panel**: glassmorphic sidebar with an **亚马逊仓点 | 自营仓** switch, search (code / name / city / province / address / postal, Chinese or English), KPI quick filters (热门 / 大件 / 偏远, or 运营中 / 状态提醒), province chips, grouped list, keyboard navigation
 - **Details**: 概览 (Excel fields + the workbook's own definitions + coordinate source), 运营指标 (Amazon only: capacity / area / headcount / inbound / outbound, as placeholders until those columns exist), 周边仓点 (Amazon warehouses list the nearest 3 internal warehouses first, then the nearest Amazon sites; internal warehouses list the nearest Amazon sites first)
 - **Popups**: code, city and every Excel field (labelled with the original header text), plus a 查看详情 button
