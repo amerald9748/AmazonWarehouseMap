@@ -1,0 +1,174 @@
+/* =====================================================================
+   浅色模式（html[data-theme="light"]）
+   深色是默认设计；这里覆盖 Tailwind 工具类与自定义组件的颜色
+   ===================================================================== */
+.wh-theme-moon { display: none; }
+[data-theme="light"] .wh-theme-sun { display: none; }
+[data-theme="light"] .wh-theme-moon { display: block; }
+
+[data-theme="light"] {
+  color-scheme: light;
+  --wh-glass: rgba(255, 255, 255, .86);
+  --wh-line: rgba(15, 23, 42, .1);
+}
+[data-theme="light"] body { background: #eef2f7; color: #0f172a; }
+[data-theme="light"] .wh-vignette {
+  background:
+    radial-gradient(ellipse 80% 70% at 60% 45%, transparent 60%, rgba(148, 163, 184, .22) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, .35), transparent 18%);
+}
+
+/* 文字与边框（覆盖 Tailwind 工具类） */
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-slate-100 { color: #0f172a; }
+[data-theme="light"] .text-slate-200 { color: #1e293b; }
+[data-theme="light"] .text-slate-300 { color: #334155; }
+[data-theme="light"] .text-slate-400 { color: #475569; }
+[data-theme="light"] .text-slate-500 { color: #64748b; }
+[data-theme="light"] .text-slate-600 { color: #94a3b8; }
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/\[0\.06\],
+[data-theme="light"] .border-white\/\[0\.07\] { border-color: rgba(15, 23, 42, .09); }
+[data-theme="light"] .bg-white\/5 { background-color: rgba(15, 23, 42, .05); }
+
+/* 面板、图例 */
+[data-theme="light"] .wh-panel,
+[data-theme="light"] .wh-legend {
+  background: rgba(255, 255, 255, .84);
+  box-shadow: 0 24px 60px -18px rgba(15, 23, 42, .35), 0 0 0 1px rgba(15, 23, 42, .06);
+}
+[data-theme="light"] #search { background: rgba(15, 23, 42, .04); border-color: rgba(15, 23, 42, .12); color: #0f172a; }
+[data-theme="light"] #search:focus { background: #fff; border-color: rgba(14, 165, 233, .55); }
+[data-theme="light"] #search::placeholder { color: #94a3b8; }
+[data-theme="light"] .wh-icon-btn { color: #64748b; }
+[data-theme="light"] .wh-icon-btn:hover,
+[data-theme="light"] .wh-ghost-btn:hover { background: rgba(15, 23, 42, .07); color: #0f172a; }
+[data-theme="light"] .wh-ghost-btn,
+[data-theme="light"] #import-btn { color: #475569 !important; }
+[data-theme="light"] .wh-action { color: #1e293b; background: rgba(15, 23, 42, .04); }
+[data-theme="light"] .wh-action:hover:not(:disabled) { background: rgba(15, 23, 42, .08); box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .16); }
+[data-theme="light"] .wh-kbd { color: #64748b; background: rgba(15, 23, 42, .04); }
+[data-theme="light"] .wh-panel-open { color: #1e293b; box-shadow: 0 10px 30px -10px rgba(15, 23, 42, .35); }
+[data-theme="light"] .wh-panel-open:hover { background: #fff; }
+[data-theme="light"] .wh-scroll { scrollbar-color: rgba(100, 116, 139, .3) transparent; }
+[data-theme="light"] .wh-scroll::-webkit-scrollbar-thumb { background-color: rgba(100, 116, 139, .28); }
+[data-theme="light"] .wh-skeleton {
+  background: linear-gradient(100deg, rgba(15, 23, 42, .04) 30%, rgba(15, 23, 42, .09) 50%, rgba(15, 23, 42, .04) 70%);
+  background-size: 300% 100%;
+}
+
+/* 类型切换 / KPI / 省份 / 标签页 */
+[data-theme="light"] .wh-kind { background: rgba(15, 23, 42, .05); }
+[data-theme="light"] .wh-kind__indicator { background: #fff; box-shadow: 0 1px 2px rgba(15, 23, 42, .12), 0 6px 16px -8px rgba(15, 23, 42, .3); }
+[data-theme="light"] .wh-kind__tab { color: #64748b; }
+[data-theme="light"] .wh-kind__tab:hover,
+[data-theme="light"] .wh-kind__tab[aria-selected="true"] { color: #0f172a; }
+[data-theme="light"] .wh-kpi { background: rgba(15, 23, 42, .035); box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .07); }
+[data-theme="light"] .wh-kpi:hover { background: rgba(15, 23, 42, .06); }
+[data-theme="light"] .wh-kpi__value { color: #0f172a; }
+[data-theme="light"] .wh-kpi__label { color: #64748b; }
+[data-theme="light"] .wh-kpi[data-kpi="all"] { --b: #64748b !important; }
+[data-theme="light"] .wh-kpi.is-active { background: color-mix(in srgb, var(--b) 16%, white); }
+[data-theme="light"] .wh-kpi.is-active .wh-kpi__value { color: color-mix(in srgb, var(--b) 65%, black); }
+[data-theme="light"] .wh-chip { color: #334155; background: rgba(15, 23, 42, .04); }
+[data-theme="light"] .wh-chip:hover:not(:disabled) { background: rgba(15, 23, 42, .08); color: #0f172a; }
+[data-theme="light"] .wh-chip.is-active { background: #0f172a; color: #f8fafc; box-shadow: 0 6px 16px -8px rgba(15, 23, 42, .6); }
+[data-theme="light"] .wh-tabs { background: rgba(15, 23, 42, .05); box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06); }
+[data-theme="light"] .wh-tabs__indicator { background: #0f172a; box-shadow: 0 6px 16px -6px rgba(15, 23, 42, .5); }
+[data-theme="light"] .wh-tab { color: #64748b; }
+[data-theme="light"] .wh-tab:hover { color: #0f172a; }
+[data-theme="light"] .wh-tab[aria-selected="true"] { color: #f8fafc; }
+
+/* 徽章：浅底上加深文字 */
+[data-theme="light"] .wh-badge {
+  color: color-mix(in srgb, var(--b) 62%, black);
+  background: color-mix(in srgb, var(--b) 16%, white);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b) 40%, transparent);
+}
+[data-theme="light"] .wh-kind__count { color: color-mix(in srgb, var(--b) 62%, black); background: color-mix(in srgb, var(--b) 18%, white); }
+[data-theme="light"] .wh-mark { background: rgba(14, 165, 233, .2); }
+
+/* 列表与卡片 */
+[data-theme="light"] .wh-group { background: rgba(241, 245, 249, .95); color: #64748b; }
+[data-theme="light"] .wh-item:hover,
+[data-theme="light"] .wh-item.is-hover,
+[data-theme="light"] .wh-item.is-active { background: rgba(15, 23, 42, .045); }
+[data-theme="light"] .wh-item.is-selected { background: color-mix(in srgb, var(--c) 14%, white); }
+[data-theme="light"] .wh-item__icon { color: color-mix(in srgb, var(--c) 65%, black); background: color-mix(in srgb, var(--c) 18%, white); }
+[data-theme="light"] .wh-card { background: rgba(15, 23, 42, .03); box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .07); }
+[data-theme="light"] .wh-card__label { color: #64748b; }
+[data-theme="light"] .wh-card__value { color: #0f172a; }
+[data-theme="light"] .wh-card--placeholder {
+  background: repeating-linear-gradient(135deg, rgba(15, 23, 42, .025) 0 8px, transparent 8px 16px);
+  box-shadow: inset 0 0 0 1px rgba(100, 116, 139, .2);
+}
+[data-theme="light"] .wh-meter { background: rgba(15, 23, 42, .07); }
+[data-theme="light"] .wh-meter::after {
+  background: linear-gradient(90deg, transparent calc(33.3% - 1px), #fff calc(33.3% - 1px) 33.3%, transparent 33.3% calc(66.6% - 1px), #fff calc(66.6% - 1px) 66.6%, transparent 66.6%);
+}
+[data-theme="light"] .wh-near { background: rgba(15, 23, 42, .03); box-shadow: inset 0 0 0 1px rgba(15, 23, 42, .06); }
+[data-theme="light"] .wh-near:hover { background: rgba(15, 23, 42, .06); }
+[data-theme="light"] .wh-near__bar { background: rgba(15, 23, 42, .07); }
+[data-theme="light"] .wh-code-chip { color: #4338ca; background: rgba(99, 102, 241, .1); }
+[data-theme="light"] .wh-code-chip.is-internal { color: #047857; background: rgba(16, 185, 129, .12); }
+[data-theme="light"] .border-sky-400\/15 { border-color: rgba(14, 165, 233, .25); }
+[data-theme="light"] .text-sky-100\/80 { color: #0c4a6e; }
+
+/* 地图标记：标签改为浅色胶囊 */
+[data-theme="light"] .wh-tag { color: #0f172a; background: rgba(255, 255, 255, .92); border-color: rgba(15, 23, 42, .12); box-shadow: 0 4px 12px rgba(15, 23, 42, .18); }
+[data-theme="light"] .wh-tag--internal { color: #065f46; border-color: rgba(16, 185, 129, .4); background: rgba(236, 253, 245, .95); }
+[data-theme="light"] .wh-marker.is-selected .wh-tag,
+[data-theme="light"] .wh-imarker.is-selected .wh-tag { background: var(--c); color: #0b1220; }
+[data-theme="light"] .wh-pin,
+[data-theme="light"] .wh-diamond { box-shadow: 0 0 0 2px #fff, 0 0 14px color-mix(in srgb, var(--c) 60%, transparent), 0 4px 10px rgba(15, 23, 42, .3); }
+[data-theme="light"] .wh-marker.is-selected .wh-pin,
+[data-theme="light"] .wh-imarker.is-selected .wh-diamond { box-shadow: 0 0 0 2px #0f172a, 0 0 0 6px color-mix(in srgb, var(--c) 40%, transparent), 0 0 26px var(--c); }
+[data-theme="light"] .wh-cluster__body {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #e2e8f0);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .25), inset 0 1px 0 #fff;
+}
+[data-theme="light"] .wh-cluster__count { color: #0f172a; }
+[data-theme="light"] .wh-cluster__tip { color: #334155; background: rgba(255, 255, 255, .96); box-shadow: 0 12px 30px -8px rgba(15, 23, 42, .3); }
+[data-theme="light"] .wh-cluster__tip-title { color: #0f172a; }
+[data-theme="light"] .wh-cluster__codes b { color: color-mix(in srgb, var(--c) 62%, black); background: color-mix(in srgb, var(--c) 16%, white); }
+
+/* 弹窗 */
+[data-theme="light"] .wh-popup .maplibregl-popup-content {
+  color: #1e293b; background: rgba(255, 255, 255, .96); border-color: rgba(15, 23, 42, .08);
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, .35);
+}
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: rgba(255, 255, 255, .96); }
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: rgba(255, 255, 255, .96); }
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: rgba(255, 255, 255, .96); }
+[data-theme="light"] .wh-popup.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: rgba(255, 255, 255, .96); }
+[data-theme="light"] .wh-popup__code { color: #0f172a; }
+[data-theme="light"] .wh-popup__sub,
+[data-theme="light"] .wh-popup__rows dt { color: #64748b; }
+[data-theme="light"] .wh-popup__rows { border-top-color: rgba(15, 23, 42, .08); }
+[data-theme="light"] .wh-popup__rows dd { color: #1e293b; }
+[data-theme="light"] .wh-popup__note { color: #4f46e5; }
+[data-theme="light"] .wh-popup .maplibregl-popup-close-button:hover { background: rgba(15, 23, 42, .07); color: #0f172a; }
+
+/* MapLibre 控件 */
+[data-theme="light"] .maplibregl-ctrl-group { background: rgba(255, 255, 255, .9) !important; box-shadow: 0 10px 30px -10px rgba(15, 23, 42, .35) !important; }
+[data-theme="light"] .maplibregl-ctrl-group button + button { border-top-color: rgba(15, 23, 42, .08) !important; }
+[data-theme="light"] .maplibregl-ctrl-group button:not(:disabled):hover { background-color: rgba(15, 23, 42, .06) !important; }
+[data-theme="light"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: none; }
+[data-theme="light"] .wh-toolbar button { color: #334155; }
+[data-theme="light"] .wh-toolbar button[aria-pressed="true"] { color: #d97706; }
+[data-theme="light"] .maplibregl-ctrl-attrib { background: rgba(255, 255, 255, .75) !important; color: #64748b; }
+[data-theme="light"] .maplibregl-ctrl-attrib a { color: #475569 !important; }
+[data-theme="light"] .maplibregl-ctrl-attrib-button { filter: none; }
+[data-theme="light"] .maplibregl-ctrl-scale { background: rgba(255, 255, 255, .75); color: #475569; border-color: #94a3b8; }
+
+/* 提示 / 拖拽 / 加载 */
+[data-theme="light"] .wh-toast { color: #1e293b; background: rgba(255, 255, 255, .96); box-shadow: 0 16px 40px -12px rgba(15, 23, 42, .35); }
+[data-theme="light"] .wh-toast__icon { color: color-mix(in srgb, var(--b) 70%, black); }
+[data-theme="light"] .wh-dropzone { background: rgba(241, 245, 249, .6); }
+[data-theme="light"] .wh-dropzone > div { background: rgba(255, 255, 255, .92); }
+[data-theme="light"] .wh-loader { background: radial-gradient(ellipse at 50% 40%, #ffffff, #e2e8f0 70%); }
+[data-theme="light"] .wh-switch__track { background: rgba(100, 116, 139, .35); }

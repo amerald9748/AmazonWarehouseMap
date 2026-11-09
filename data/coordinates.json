@@ -1,0 +1,48 @@
+{
+  "_comment": "已知坐标登记表：当 Excel 某行缺少 纬度/经度 时，按编码沿用这里的坐标（warehouses = 亚马逊仓点，internal = 自营仓）。Excel 中的坐标始终优先。更新方式：在 Excel 补充坐标后运行 python scripts/sync-coordinates.py",
+  "updated": "2026-11-09",
+  "precisionLegend": {
+    "building": "OpenStreetMap 建筑轮廓中心（地址与邮编已交叉核对）",
+    "postal": "邮编中心点（约一个街区精度）",
+    "manual": "从 Excel 同步的人工录入坐标"
+  },
+  "warehouses": {
+    "XCAB": { "lat": 51.16242, "lng": -114.02191, "precision": "postal" },
+    "XYY1": { "lat": 43.84105, "lng": -79.04651, "precision": "building" },
+    "XYY3": { "lat": 49.83226, "lng": -97.17673, "precision": "postal" },
+    "XYY4": { "lat": 43.52966, "lng": -79.81567, "precision": "postal" },
+    "YDC5": { "lat": 51.18722, "lng": -113.97870, "precision": "postal" },
+    "YEG1": { "lat": 53.39363, "lng": -113.49670, "precision": "building" },
+    "YEG2": { "lat": 53.52279, "lng": -113.78140, "precision": "building" },
+    "YGK1": { "lat": 44.19624, "lng": -77.34513, "precision": "building" },
+    "YHM1": { "lat": 43.17543, "lng": -79.91110, "precision": "building" },
+    "YOO1": { "lat": 43.87962, "lng": -79.01506, "precision": "building" },
+    "YOW1": { "lat": 45.34683, "lng": -75.43865, "precision": "building" },
+    "YOW3": { "lat": 45.26797, "lng": -75.78976, "precision": "building" },
+    "YVR1": { "lat": 49.16055, "lng": -122.94900, "precision": "building" },
+    "YVR2": { "lat": 49.16055, "lng": -122.94900, "precision": "building" },
+    "YVR3": { "lat": 49.23388, "lng": -122.88535, "precision": "building" },
+    "YVR4": { "lat": 49.05449, "lng": -123.10779, "precision": "building" },
+    "YXU1": { "lat": 42.82925, "lng": -81.25807, "precision": "building" },
+    "YYC1": { "lat": 51.19102, "lng": -113.98533, "precision": "building" },
+    "YYC4": { "lat": 50.95995, "lng": -113.94038, "precision": "building" },
+    "YYC6": { "lat": 50.96735, "lng": -113.93779, "precision": "building" },
+    "YYZ1": { "lat": 43.59202, "lng": -79.73756, "precision": "building" },
+    "YYZ3": { "lat": 43.60848, "lng": -79.79486, "precision": "building" },
+    "YYZ4": { "lat": 43.61827, "lng": -79.79094, "precision": "building" },
+    "YYZ7": { "lat": 43.85039, "lng": -79.72807, "precision": "building" },
+    "YYZ9": { "lat": 43.83575, "lng": -79.24011, "precision": "building" }
+  },
+  "internal": {
+    "BESTAR": { "lat": 50.98808, "lng": -113.95162, "precision": "building" },
+    "CAL-5505": { "lat": 50.98808, "lng": -113.95162, "precision": "building" },
+    "CAL-7803": { "lat": 50.98308, "lng": -113.98393, "precision": "building" },
+    "GFL": { "lat": 49.19938, "lng": -123.12066, "precision": "building" },
+    "TOR-1140": { "lat": 43.65507, "lng": -79.66354, "precision": "building" },
+    "TOR-5106": { "lat": 43.62479, "lng": -79.63779, "precision": "building" },
+    "TOR-7975": { "lat": 43.61660, "lng": -79.78507, "precision": "building" },
+    "VAST": { "lat": 49.15842, "lng": -123.01563, "precision": "building" },
+    "WBLL": { "lat": 53.53039, "lng": -113.41462, "precision": "building" },
+    "WIN-0164": { "lat": 49.88712, "lng": -97.05899, "precision": "building" }
+  }
+}

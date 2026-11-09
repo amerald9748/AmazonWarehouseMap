@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Raw internal directory contains staff contacts — only the sanitized data/internal-warehouses.xlsx is public
+warehouse_directory*.xlsx
+
+# Excel lock files
+~$*.xlsx
+~$*.xls
+
+# Local-only Claude Code settings
+.claude/settings.local.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node (not required, but in case tooling is added later)
+node_modules/
